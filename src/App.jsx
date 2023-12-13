@@ -1,17 +1,19 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import ToDoList from './ToDoList';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Login from './Login';
 import CharacterScreen from './CharacterScreen';
+import Home from './Home';
+import "./App.css"
 
 const App = () => {
   return (
     <Router>
       <div>
         <nav>
+          <img src="/assets/react-quest-logo.png" alt="logo" />
           <ul>
             <li>
-              <Link to="/todo">ToDoList</Link>
+              <Link to="/">Home</Link>
             </li>
             <li>
               <Link to="/login">Login</Link>
@@ -21,17 +23,11 @@ const App = () => {
             </li>
           </ul>
         </nav>
-        <Switch>
-          <Route path="/todo">
-            <ToDoList />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/character">
-            <CharacterScreen />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/character" element={<CharacterScreen />} />
+        </Routes>
       </div>
     </Router>
   );

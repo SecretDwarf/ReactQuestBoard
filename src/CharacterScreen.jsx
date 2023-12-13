@@ -2,7 +2,7 @@ import { Canvas } from "@react-three/fiber";
 import Experience from "./components/Experience";
 import Interface from "./components/Interface";
 
-export default function CharacterScreen() {
+function CharacterScreen() {
   return (
     <>
       <Canvas
@@ -16,3 +16,5 @@ export default function CharacterScreen() {
     </>
   );
 }
+
+export default CharacterScreen;
