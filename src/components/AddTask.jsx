@@ -1,11 +1,11 @@
 import { useState } from "react";
-export default function AddTaskForm ( addTask ) {
+export default function AddTask ( addTask ) {
     const [value, setValue] = useState("");
   
     const handleSubmit = e => {
       e.preventDefault();
       value && addTask(value)
-      setValue("");
+      setValue(value);
     };
   
     return (
@@ -13,10 +13,10 @@ export default function AddTaskForm ( addTask ) {
         <input
           type="text"
           value={value}
-          placeholder="Enter a title for this task…"
+          placeholder="Our next adventure is..."
           onChange={e => setValue(e.target.value)}
         />
-        <button type="submit"><i class="fas fa-plus"></i></button>
+        <button type="submit">+</button>
       </form>
     );
   }

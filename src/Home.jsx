@@ -1,13 +1,14 @@
 import {doc, updateDoc} from "firebase/firestore"
-import AddTaskForm from "./components/AddTaskForm";
+import AddTaskForm from "./components/AddTask";
 import { db } from "./firebase";
 import { useState } from "react";
+
 
 export default function Home () {
     
     const [tasks, setTasks] = useState([{
         text: "Start your Quest",
-        isCompleted: false
+        isCompleted: true
       },{
         text: "Login/Create Account",
         isCompleted: false
@@ -16,7 +17,13 @@ export default function Home () {
         isCompleted: false
       }]);
 
-  const addTask = text => setTasks([...tasks, { text }]);
+  const addTask = text => {
+    setTasks([...tasks, { text }])
+    docRef = doc(db, "users", "test")
+    updateDoc(docRef, {
+      tasks: newTasks
+    })
+  };
 
   const toggleTask = index => {
     const newTasks = [...tasks];
@@ -32,6 +39,10 @@ export default function Home () {
     const newTasks = [...tasks];
     newTasks.splice(index, 1);
     setTasks(newTasks);
+    docRef = doc(db, "users", "test")
+    updateDoc(docRef, {
+        tasks: newTasks
+    })
   };
 
   return (
@@ -41,7 +52,7 @@ export default function Home () {
           <span onClick={() => toggleTask(index)} className={task.isCompleted ? "todo-text todo-completed" : "todo-text"}>
             {task.text}
           </span>
-          <button onClick={() => removeTask(index)}><i class="fas fa-trash-alt"></i></button>
+          <button onClick={() => removeTask(index)}>Trash</button>
         </div>
       ))}
       <AddTaskForm addTask={addTask} />

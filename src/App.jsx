@@ -3,14 +3,15 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Login from './Login';
 import CharacterScreen from './CharacterScreen';
 import Home from './Home';
+import logo from './assets/react-quest-logo.png'
 import "./App.css"
 
 const App = () => {
   return (
     <Router>
       <div>
-        <nav>
-          <img src="/assets/react-quest-logo.png" alt="logo" />
+        <div className='nav'>
+          <img className="logo" src={logo} alt="logo" />
           <ul>
             <li>
               <Link to="/">Home</Link>
@@ -19,10 +20,10 @@ const App = () => {
               <Link to="/login">Login</Link>
             </li>
             <li>
-              <Link to="/character">CharacterScreen</Link>
+              <Link to="/character">Avatar</Link>
             </li>
           </ul>
-        </nav>
+        </div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
